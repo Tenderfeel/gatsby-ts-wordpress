@@ -5,11 +5,11 @@
  * See: https://www.gatsbyjs.com/docs/use-static-query/
  */
 
-import React from "react"
-import { useStaticQuery, graphql } from "gatsby"
+import React from 'react'
+import { useStaticQuery, graphql } from 'gatsby'
 
-const Bio = () => {
-  const { author } = useStaticQuery(graphql`
+const Bio = (): JSX.Element => {
+  const { author } = useStaticQuery<GatsbyTypes.BioQueryQuery>(graphql`
     query BioQuery {
       # if there was more than one user, this would need to be filtered
       author: wpUser {
@@ -26,11 +26,11 @@ const Bio = () => {
   const avatarUrl = author?.avatar?.url
 
   return (
-    <div className="bio">
+    <div className='bio'>
       {avatarUrl && (
         <img
           alt={author?.firstName || ``}
-          className="bio-avatar"
+          className='bio-avatar'
           src={avatarUrl}
         />
       )}

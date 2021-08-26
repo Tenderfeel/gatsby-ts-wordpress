@@ -5,12 +5,25 @@
  * See: https://www.gatsbyjs.com/docs/use-static-query/
  */
 
-import React from "react"
-import PropTypes from "prop-types"
-import { Helmet } from "react-helmet"
-import { useStaticQuery, graphql } from "gatsby"
+import React from 'react'
+import PropTypes from 'prop-types'
+import { Helmet } from 'react-helmet'
+import { useStaticQuery, graphql } from 'gatsby'
 
-const Seo = ({ description, lang, meta, title }) => {
+const Seo = ({
+  description,
+  lang,
+  meta,
+  title,
+}: {
+  description?: string
+  lang?: string
+  meta: ConcatArray<
+    | { name: string; content: string; property?: undefined }
+    | { property: string; content: string; name?: undefined }
+  >
+  title?: string
+}): JSX.Element => {
   const { wp, wpUser } = useStaticQuery(
     graphql`
       query {
@@ -38,7 +51,7 @@ const Seo = ({ description, lang, meta, title }) => {
         lang,
       }}
       title={title}
-      titleTemplate={defaultTitle ? `%s | ${defaultTitle}` : null}
+      titleTemplate={defaultTitle ? `%s | ${defaultTitle}` : undefined}
       meta={[
         {
           name: `description`,
